@@ -35,7 +35,8 @@ module.exports = {
       }
     })
   },
-  findBy: (location, callback) => {
+  findBy: (req, callback) => {
+    const { location } = req.params;
     Grub.find({ location: location }, function (err, grubs) {
       if (err) {
         console.log('findBy error');

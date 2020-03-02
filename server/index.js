@@ -10,4 +10,6 @@ app.use(express.json());
 
 app.post('/grub', controller.addGrub);
 
+app.get('/list/:location', controller.getGrubs);
+
 app.listen(PORT, () => console.log('Listening on port: ' + PORT));

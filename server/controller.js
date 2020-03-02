@@ -13,7 +13,7 @@ module.exports = {
     })
   },
   getGrubs: (req, res) => {
-    db.findBy(req.body, (err, grubs) => {
+    db.findBy(req, (err, grubs) => {
       if (err) {
         console.log('getGrubs error: controller');
         res.status(500).end();

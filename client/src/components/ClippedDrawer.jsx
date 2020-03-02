@@ -18,6 +18,7 @@ import KitchenIcon from '@material-ui/icons/Kitchen';
 import AcUnitIcon from '@material-ui/icons/AcUnit';
 import EcoIcon from '@material-ui/icons/Eco';
 import AddModal from './AddModal.jsx';
+import axios from 'axios';
 
 const drawerWidth = 180;
 
@@ -72,7 +73,8 @@ class ClippedDrawer extends Component {
       modalOpen: false,
     }
     this.handleClickOpen = this.handleClickOpen.bind(this);
-    this.handleClose = this. handleClose.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleFridgeClick = this.handleFridgeClick.bind(this);
   }
 
   handleClickOpen() {
@@ -85,6 +87,18 @@ class ClippedDrawer extends Component {
     this.setState({
       modalOpen: false
     });
+  }
+
+  handleFridgeClick() {
+    axios.get('/list/Fridge')
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .finally(function () {
+      })
   }
 
   render() {
@@ -107,7 +121,7 @@ class ClippedDrawer extends Component {
               </ListItemIcon>
               <ListItemText primary='Add' />
             </ListItem>
-            <ListItem button>
+            <ListItem button onClick={this.handleFridgeClick}>
               <ListItemIcon>
                 <KitchenIcon color='black' />
               </ListItemIcon>
