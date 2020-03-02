@@ -75,6 +75,7 @@ class ClippedDrawer extends Component {
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleFridgeClick = this.handleFridgeClick.bind(this);
+    this.handleFreezerClick = this.handleFreezerClick.bind(this);
   }
 
   handleClickOpen() {
@@ -93,6 +94,20 @@ class ClippedDrawer extends Component {
     axios.get('/list/Fridge')
       .then((response) => {
         console.log(response.data);
+        this.setState({
+          data: response.data
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .finally(function () {
+      })
+  }
+
+  handleFreezerClick() {
+    axios.get('/list/Freezer')
+      .then((response) => {
         this.setState({
           data: response.data
         });
@@ -130,7 +145,7 @@ class ClippedDrawer extends Component {
               </ListItemIcon>
               <ListItemText primary='Fridge' />
             </ListItem>
-            <ListItem button>
+            <ListItem button onClick={this.handleFreezerClick}>
               <ListItemIcon>
                 <AcUnitIcon color='black' />
               </ListItemIcon>
