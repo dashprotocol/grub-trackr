@@ -35,13 +35,13 @@ module.exports = {
       }
     })
   },
-  readAll: (location, callback) => {
+  findBy: (location, callback) => {
     Grub.find({ location: location }, function (err, grubs) {
       if (err) {
-        console.log('ReadAll error');
+        console.log('findBy error');
         callback(err);
       } else {
-        console.log('ReadAll success');
+        console.log('findBy success');
         callback(null, grubs);
       }
     })

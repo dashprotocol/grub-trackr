@@ -12,6 +12,7 @@ import Select from '@material-ui/core/Select';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import ExpirationDate from './ExpirationDate.jsx';
+import axios from 'axios';
 
 
 
@@ -20,15 +21,16 @@ class AddModal extends Component {
     super(props);
     this.state = {
       grubName: '',
-      location: '',
       category: '',
       expiration: '',
+      location: '',
     }
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.handleGrubNameChange = this.handleGrubNameChange.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleExpirationDateChange = this.handleExpirationDateChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleLocationChange(event) {
@@ -61,18 +63,38 @@ class AddModal extends Component {
     })
   }
 
+  handleSubmit() {
+    this.props.handleClose();
+    let grub = {
+      item: this.state.grubName,
+      quantity: this.state.quantity,
+      category: this.state.category,
+      expiration: this.state.expiration,
+      location: this.state.location,
+    };
+    axios.post('/grub', grub)
+      .then(function (response) {
+        console.log('Client side add success');
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .finally(function () {
+      })
+  }
+
   render() {
     const { classes } = this.props;
     return(
      <div>
       <Dialog open={this.props.open} onClose={this.props.handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Add</DialogTitle>
+        <DialogTitle id="form-dialog-title">Add new item</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
             margin="dense"
             id="grub name"
-            label="New food item"
+            label="item name"
             type="text"
             value={this.state.grubName}
             onChange={this.handleGrubNameChange}
@@ -144,8 +166,8 @@ class AddModal extends Component {
           <Button onClick={this.props.handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={this.props.handleClose} color="primary">
-            Subscribe
+          <Button onClick={this.handleSubmit} color="primary">
+            Add
           </Button>
         </DialogActions>
       </Dialog>
