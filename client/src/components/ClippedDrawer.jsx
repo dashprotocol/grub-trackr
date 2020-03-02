@@ -47,35 +47,14 @@ class ClippedDrawer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        {
-          item: 'Chicken',
-          quantity: 1,
-          category: 'meat',
-          expiration: 'Fri Sep 11 2020 11:45:00 GMT-0700 (Pacific Daylight Time)',
-          location: 'fridge',
-        },
-        {
-          item: 'Brocolli',
-          quantity: 2,
-          category: 'vegetable',
-          expiration: 'Thu Sep 24 2020 11:45:00 GMT-0700 (Pacific Daylight Time)',
-          location: 'fridge',
-        },
-        {
-          item: 'Linguini',
-          quantity: 10,
-          category: 'other',
-          expiration: 'Sat Oct 31 2020 11:45:00 GMT-0700 (Pacific Daylight Time)',
-          location: 'pantry',
-        },
-      ],
+      data: [],
       modalOpen: false,
     }
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleFridgeClick = this.handleFridgeClick.bind(this);
     this.handleFreezerClick = this.handleFreezerClick.bind(this);
+    this.handlePantryClick = this.handlePantryClick.bind(this);
   }
 
   handleClickOpen() {
@@ -93,7 +72,6 @@ class ClippedDrawer extends Component {
   handleFridgeClick() {
     axios.get('/list/Fridge')
       .then((response) => {
-        console.log(response.data);
         this.setState({
           data: response.data
         });
@@ -113,6 +91,20 @@ class ClippedDrawer extends Component {
         });
       })
       .catch(function (error) {
+        console.log(error);
+      })
+      .finally(function () {
+      })
+  }
+
+  handlePantryClick() {
+    axios.get('/list/Pantry')
+      .then((response) => {
+        this.setState({
+          data: response.data
+        });
+      })
+      .catch(function () {
         console.log(error);
       })
       .finally(function () {
@@ -151,7 +143,7 @@ class ClippedDrawer extends Component {
               </ListItemIcon>
               <ListItemText primary='Freezer' />
             </ListItem>
-            <ListItem button>
+            <ListItem button onClick={this.handlePantryClick}>
               <ListItemIcon>
                 <EcoIcon color='black' />
               </ListItemIcon>
