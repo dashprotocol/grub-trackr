@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ExpirationDate from './ExpirationDate.jsx';
 import GrubList from './GrubList.jsx';
+import ClippedDrawer from './ClippedDrawer.jsx';
+import Bar from './Bar.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -32,7 +34,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        <GrubList grubs={this.state} />
+        <div>
+          <Bar />
+        </div>
+        <div>
+          <ClippedDrawer />
+        </div>
+        <div>
+          <GrubList grubs={this.state} />
+        </div>
       </div>
     );
   }
