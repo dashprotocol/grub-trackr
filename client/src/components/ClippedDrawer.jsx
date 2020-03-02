@@ -91,8 +91,11 @@ class ClippedDrawer extends Component {
 
   handleFridgeClick() {
     axios.get('/list/Fridge')
-      .then(function (response) {
-        console.log(response);
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          data: response.data
+        });
       })
       .catch(function (error) {
         console.log(error);
