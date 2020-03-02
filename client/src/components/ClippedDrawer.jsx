@@ -13,6 +13,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import GrubList from './GrubList.jsx';
+import AddIcon from '@material-ui/icons/Add';
+import KitchenIcon from '@material-ui/icons/Kitchen';
+import AcUnitIcon from '@material-ui/icons/AcUnit';
+import EcoIcon from '@material-ui/icons/Eco';
 
 const drawerWidth = 180;
 
@@ -70,7 +74,7 @@ class ClippedDrawer extends Component {
   render() {
     const { classes } = this.props;
     return (
-        <div className={classes.root}>
+    <div className={classes.root}>
       <CssBaseline />
       <Drawer
         className={classes.drawer}
@@ -81,12 +85,30 @@ class ClippedDrawer extends Component {
       >
         <div className={classes.toolbar} />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+            <ListItem button>
+              <ListItemIcon>
+                <AddIcon color='black' />
+              </ListItemIcon>
+              <ListItemText primary='Add' />
             </ListItem>
-          ))}
+            <ListItem button>
+              <ListItemIcon>
+                <KitchenIcon color='black' />
+              </ListItemIcon>
+              <ListItemText primary='Fridge' />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <AcUnitIcon color='black' />
+              </ListItemIcon>
+              <ListItemText primary='Freezer' />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <EcoIcon color='black' />
+              </ListItemIcon>
+              <ListItemText primary='Pantry' />
+            </ListItem>
         </List>
         <Divider />
         <List>
