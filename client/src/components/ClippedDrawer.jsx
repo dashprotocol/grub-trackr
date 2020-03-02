@@ -17,6 +17,7 @@ import AddIcon from '@material-ui/icons/Add';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import AcUnitIcon from '@material-ui/icons/AcUnit';
 import EcoIcon from '@material-ui/icons/Eco';
+import AddModal from './AddModal.jsx';
 
 const drawerWidth = 180;
 
@@ -67,8 +68,23 @@ class ClippedDrawer extends Component {
           expiration: 'Sat Oct 31 2020 11:45:00 GMT-0700 (Pacific Daylight Time)',
           location: 'pantry',
         },
-      ]
+      ],
+      modalOpen: false,
     }
+    this.handleClickOpen = this.handleClickOpen.bind(this);
+    this.handleClose = this. handleClose.bind(this);
+  }
+
+  handleClickOpen() {
+    this.setState({
+      modalOpen: true
+    });
+  }
+
+  handleClose() {
+    this.setState({
+      modalOpen: false
+    });
   }
 
   render() {
@@ -85,7 +101,7 @@ class ClippedDrawer extends Component {
       >
         <div className={classes.toolbar} />
         <List>
-            <ListItem button>
+            <ListItem button onClick={this.handleClickOpen}>
               <ListItemIcon>
                 <AddIcon color='black' />
               </ListItemIcon>
@@ -111,16 +127,9 @@ class ClippedDrawer extends Component {
             </ListItem>
         </List>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
       <GrubList grubs={this.state.data} />
+      <AddModal open={this.state.modalOpen} handleClose={this.handleClose} />
     </div>
     )
   }
