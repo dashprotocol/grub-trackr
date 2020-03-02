@@ -31,6 +31,7 @@ class AddModal extends Component {
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleExpirationDateChange = this.handleExpirationDateChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.clearForm = this.clearForm.bind(this);
   }
 
   handleLocationChange(event) {
@@ -81,6 +82,17 @@ class AddModal extends Component {
       })
       .finally(function () {
       })
+      this.clearForm();
+  }
+
+  clearForm() {
+    this.setState({
+      grubName: '',
+      quantity: undefined,
+      category: '',
+      expiration: '',
+      location: '',
+    });
   }
 
   render() {
@@ -93,7 +105,7 @@ class AddModal extends Component {
           <TextField
             autoFocus
             margin="dense"
-            id="grub name"
+            id="item name"
             label="item name"
             type="text"
             value={this.state.grubName}
