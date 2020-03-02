@@ -20,6 +20,7 @@ class ExpirationDate extends Component {
 
   handleDateChange(date) {
     this.setState({date: date});
+    this.props.handleExpirationDateChange(date);
   }
 
   selectedDate() {
@@ -40,6 +41,7 @@ class ExpirationDate extends Component {
           KeyboardButtonProps={{
             'aria-label': 'change date',
           }}
+          fullWidth
         />
       </MuiPickersUtilsProvider>
     );

@@ -11,6 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+import ExpirationDate from './ExpirationDate.jsx';
 
 
 
@@ -19,10 +20,15 @@ class AddModal extends Component {
     super(props);
     this.state = {
       grubName: '',
-      quantity: 0,
       location: '',
+      category: '',
+      expiration: '',
     }
     this.handleLocationChange = this.handleLocationChange.bind(this);
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.handleGrubNameChange = this.handleGrubNameChange.bind(this);
+    this.handleQuantityChange = this.handleQuantityChange.bind(this);
+    this.handleExpirationDateChange = this.handleExpirationDateChange.bind(this);
   }
 
   handleLocationChange(event) {
@@ -31,12 +37,36 @@ class AddModal extends Component {
     });
   }
 
+  handleCategoryChange(event) {
+    this.setState({
+      category: event.target.value
+    });
+  }
+
+  handleGrubNameChange(event) {
+    this.setState({
+      grubName: event.target.value
+    });
+  }
+
+  handleQuantityChange(event) {
+    this.setState({
+      quantity: event.target.value
+    });
+  }
+
+  handleExpirationDateChange(date){
+    this.setState({
+      expiration: date
+    })
+  }
+
   render() {
     const { classes } = this.props;
     return(
      <div>
       <Dialog open={this.props.open} onClose={this.props.handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="form-dialog-title">Add</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
@@ -44,6 +74,8 @@ class AddModal extends Component {
             id="grub name"
             label="New food item"
             type="text"
+            value={this.state.grubName}
+            onChange={this.handleGrubNameChange}
             fullWidth
           />
           <TextField
@@ -52,6 +84,8 @@ class AddModal extends Component {
             id="quantity"
             label="quantity"
             type="number"
+            value={this.state.quantity}
+            onChange={this.handleQuantityChange}
             fullWidth
           />
           <InputLabel id='location-dialog-select-label'>location</InputLabel>
@@ -73,6 +107,38 @@ class AddModal extends Component {
               Pantry
             </MenuItem>
           </Select>
+          <InputLabel id='category-dialog-select-label'>category</InputLabel>
+          <Select
+            labelId='category'
+            id='category'
+            value={this.state.category}
+            onChange={this.handleCategoryChange}
+            input={<Input />}
+            fullWidth
+          >
+            <MenuItem value='Dairy'>
+              Dairy
+            </MenuItem>
+            <MenuItem value='Meat'>
+              Meat
+            </MenuItem>
+            <MenuItem value='Vegetable'>
+              Vegetable
+            </MenuItem>
+            <MenuItem value='Fruit'>
+              Fruit
+            </MenuItem>
+            <MenuItem value='Grains and pasta'>
+              Grains and pasta
+            </MenuItem>
+            <MenuItem value='Beverage'>
+              Beverages
+            </MenuItem>
+            <MenuItem value='Other'>
+              Other
+            </MenuItem>
+          </Select>
+          <ExpirationDate handleExpirationDateChange={this.handleExpirationDateChange} />
         </DialogContent>
         <DialogActions>
           <Button onClick={this.props.handleClose} color="primary">
