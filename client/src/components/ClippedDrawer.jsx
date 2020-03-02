@@ -57,6 +57,10 @@ class ClippedDrawer extends Component {
     this.handlePantryClick = this.handlePantryClick.bind(this);
   }
 
+  componentDidMount() {
+    this.handleFridgeClick();
+  }
+
   handleClickOpen() {
     this.setState({
       modalOpen: true
