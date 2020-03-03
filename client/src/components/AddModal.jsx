@@ -13,6 +13,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import ExpirationDate from './ExpirationDate.jsx';
 import axios from 'axios';
+import moment from 'moment';
 
 
 
@@ -67,11 +68,12 @@ class AddModal extends Component {
 
   handleSubmit() {
     this.props.handleClose();
+    let expDate = moment(this.state.expiration).format('MMMM DD YYYY');
     let grub = {
       item: this.state.grubName,
       quantity: this.state.quantity,
       category: this.state.category,
-      expiration: this.state.expiration,
+      expiration: expDate,
       location: this.state.location,
     };
     axios.post('/grub', grub)
