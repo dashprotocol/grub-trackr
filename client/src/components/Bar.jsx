@@ -33,10 +33,10 @@ class Bar extends Component {
     return (
       <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="sticky" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
-            Clipped drawer
+            Grub Trackr
           </Typography>
         </Toolbar>
       </AppBar>

@@ -115,6 +115,7 @@ class ClippedDrawer extends Component {
       })
   }
 
+
   render() {
     const { classes } = this.props;
     return (
@@ -128,6 +129,7 @@ class ClippedDrawer extends Component {
         }}
       >
         <div className={classes.toolbar} />
+        <Toolbar></Toolbar>
         <List>
             <ListItem button onClick={this.handleClickOpen}>
               <ListItemIcon>

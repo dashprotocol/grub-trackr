@@ -68,7 +68,7 @@ class AddModal extends Component {
 
   handleSubmit() {
     this.props.handleClose();
-    let expDate = moment(this.state.expiration).format('MMMM DD YYYY');
+    let expDate = moment(this.state.expiration).format('MMMM DD, YYYY');
     let grub = {
       item: this.state.grubName,
       quantity: this.state.quantity,

@@ -14,9 +14,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        {/* <div>
+        <div>
           <Bar />
-        </div> */}
+        </div>
         <div>
           <ClippedDrawer />
         </div>
