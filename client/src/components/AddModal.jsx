@@ -21,6 +21,7 @@ class AddModal extends Component {
     super(props);
     this.state = {
       grubName: '',
+      quantity: 0,
       category: '',
       expiration: '',
       location: '',
@@ -88,7 +89,7 @@ class AddModal extends Component {
   clearForm() {
     this.setState({
       grubName: '',
-      quantity: undefined,
+      quantity: 0,
       category: '',
       expiration: '',
       location: '',
@@ -175,7 +176,7 @@ class AddModal extends Component {
           <ExpirationDate handleExpirationDateChange={this.handleExpirationDateChange} />
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.props.handleClose} color="primary">
+          <Button onClick={() => {this.props.handleClose(); this.clearForm();}} color="primary">
             Cancel
           </Button>
           <Button onClick={this.handleSubmit} color="primary">
