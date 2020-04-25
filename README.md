@@ -1,4 +1,4 @@
-# Grub Tracker
+# Grub Trackr
 
 A responsive web app that helps you reduce food waste by keeping track of food expiration dates and allowing you to organize and categorize your food.
 
